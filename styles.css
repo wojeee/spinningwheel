@@ -21,7 +21,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .title-header {
@@ -93,7 +93,7 @@ body {
     transform: rotate(315deg);
 }
 
-/* Spin button styles */
+/* Spin button styles 
 #spin {
     position: absolute;
     top: 50%;
@@ -112,15 +112,36 @@ body {
     cursor: pointer;
     outline: none;
     letter-spacing: 1px;
+}*/
+#spin {
+    position: static;
+    background-color: #e2e2e2;
+    text-transform: uppercase;
+    border: 8px solid #fff;
+    font-weight: bold;
+    font-size: 20px;
+    color: #a2a2a2;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+    letter-spacing: 1px;
 }
 
-.arrow {
+/*.arrow {
     position: static;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     color: #fff;
+}*/
+.arrow {
+    position: static;
+    color: #fff;
+    margin-top: 1rem; /* Adding a margin on top to space it from the spin button */
 }
+
 
 .arrow::before {
     content: "\1F817";
