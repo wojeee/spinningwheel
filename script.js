@@ -80,7 +80,7 @@ function easeOutQuad(t) {
     }
 
     animate();
-}*/
+}
 function spinWheel() {
     const spins = Math.floor(Math.random() * 10) + 3; 
     const randomOffset = Math.random() * sliceAngle;  // A random offset within a slice
@@ -89,6 +89,40 @@ function spinWheel() {
     const startRotation = currentRotation;
     const changeInRotation = targetRotation - startRotation;
     const duration = 4000; 
+    const startTime = Date.now();
+
+    function animate() {
+        const now = Date.now();
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeVal = easeOutQuad(progress);
+
+        currentRotation = startRotation + easeVal * changeInRotation;
+
+        drawWheel();
+
+        if(progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            displayWinner();
+        }
+    }
+
+    animate();
+}*/
+function spinWheel() {
+    const spins = Math.floor(Math.random() * 10) + 3; 
+    const randomOffset = Math.random() * sliceAngle;  
+    const finalRotationForWinner = sliceAngle / 2;
+    const offsetForWinner = (currentRotation + randomOffset) % sliceAngle;
+    
+    // Calculate the needed adjustment for alignment
+    const adjustment = finalRotationForWinner - offsetForWinner;
+
+    const targetRotation = currentRotation + spins * 2 * Math.PI + randomOffset - offsetForWinner + adjustment;
+    const startRotation = currentRotation;
+    const changeInRotation = targetRotation - startRotation;
+    const duration = 4000;
     const startTime = Date.now();
 
     function animate() {
