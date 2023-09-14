@@ -132,6 +132,14 @@ body {
     margin-top: 20px;
 }
 
+#result {
+    color: #ffffff;
+    font-size: 24px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+
 /* Mobile Responsiveness */
 @media only screen and (max-width: 600px) {
     .title-header {
