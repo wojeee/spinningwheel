@@ -5,7 +5,18 @@ const totalItems = items.length;
 const sliceAngle = 2 * Math.PI / totalItems;
 let currentRotation = 0;
 
+// Adjust canvas for high DPI displays
+function adjustCanvasForDPI() {
+    const dpi = window.devicePixelRatio;
+    const styleWidth = +getComputedStyle(canvas).getPropertyValue("width").slice(0,-2);
+    const styleHeight = +getComputedStyle(canvas).getPropertyValue("height").slice(0,-2);
+    canvas.setAttribute('width', styleWidth * dpi);
+    canvas.setAttribute('height', styleHeight * dpi);
+    ctx.scale(dpi, dpi);
+}
+
 function drawWheel() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     for(let i = 0; i < totalItems; i++) {
         ctx.beginPath();
         ctx.moveTo(200, 200);
@@ -19,6 +30,8 @@ function drawWheel() {
         ctx.translate(200, 200);
         ctx.rotate(i * sliceAngle + sliceAngle / 2);
         ctx.fillStyle = '#000';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
         ctx.fillText(items[i], 120, 0);
         ctx.restore();
     }
@@ -56,4 +69,5 @@ function displayWinner() {
     document.getElementById('result').textContent = 'Winner: ' + items[landedItem];
 }
 
+adjustCanvasForDPI();
 drawWheel();
