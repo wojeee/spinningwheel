@@ -114,6 +114,8 @@ body {
     letter-spacing: 1px;
 }*/
 #spin {
+    margin-top: 0px;
+    margin-bottom: 0px;
     position: static;
     background-color: #e2e2e2;
     text-transform: uppercase;
@@ -121,9 +123,9 @@ body {
     font-weight: bold;
     font-size: 20px;
     color: #a2a2a2;
-    width: 80px;
+    width: 200px;
     height: 80px;
-    border-radius: 50%;
+    border-radius: 0px;
     cursor: pointer;
     outline: none;
     letter-spacing: 1px;
@@ -139,7 +141,7 @@ body {
 .arrow {
     position: static;
     color: #fff;
-    margin-top: 1rem; /* Adding a margin on top to space it from the spin button */
+    margin-top: 5px; /* Adding a margin on top to space it from the spin button */
 }
 
 
