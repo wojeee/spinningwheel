@@ -116,14 +116,9 @@ body{
     justify-content: center;
 }
 
-/* Optional: If you want some space between the header, button, and wheel */
-.lucky-wheel-header, #spin {
-    margin-bottom: 20px;
-}
-
 .title-header {
     text-align: center;
     color: #ffffff; /* White color, but you can change it to any color you like */
-    margin-bottom: 20px; /* Some space between the title and the main container */
+    margin-bottom: 10px; /* Some space between the title and the main container */
     font-family: sans-serif;
 }
