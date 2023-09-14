@@ -23,11 +23,10 @@ window.addEventListener('resize', () => {
 
 
 function drawWheel() {
-    ctx.rotate(currentRotation);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.save();
     ctx.translate(200, 200);
-    
+    ctx.rotate(currentRotation);
     
     for(let i = 0; i < totalItems; i++) {
         ctx.beginPath();
@@ -38,8 +37,7 @@ function drawWheel() {
         ctx.stroke();
 
         ctx.save();
-        /*ctx.rotate(i * sliceAngle + sliceAngle / 2);*/
-        ctx.rotate(currentRotation - sliceAngle/2);
+        ctx.rotate(i * sliceAngle + sliceAngle / 2);
         ctx.fillStyle = '#000';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
@@ -54,38 +52,9 @@ function easeOutQuad(t) {
     return t * (2 - t);
 }
 
-/*function spinWheel() {
-    const spins = Math.floor(Math.random() * 10) + 3; 
-    const targetRotation = currentRotation + (spins * 2 * Math.PI + Math.random() * 2 * Math.PI);
-    const startRotation = currentRotation;
-    const changeInRotation = targetRotation - startRotation;
-    const duration = 4000; 
-    const startTime = Date.now();
-
-    function animate() {
-        const now = Date.now();
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easeVal = easeOutQuad(progress);
-
-        currentRotation = startRotation + easeVal * changeInRotation;
-
-        drawWheel();
-
-        if(progress < 1) {
-            requestAnimationFrame(animate);
-        } else {
-            displayWinner();
-        }
-    }
-
-    animate();
-}*/
 function spinWheel() {
     const spins = Math.floor(Math.random() * 10) + 3; 
-    const randomOffset = Math.random() * sliceAngle;  // A random offset within a slice
-    const finalRotationForWinner = sliceAngle / 2;  // To stop at the middle of a slice
-    const targetRotation = currentRotation + spins * 2 * Math.PI + randomOffset - (currentRotation + randomOffset) % sliceAngle + finalRotationForWinner;
+    const targetRotation = currentRotation + (spins * 2 * Math.PI + Math.random() * 2 * Math.PI);
     const startRotation = currentRotation;
     const changeInRotation = targetRotation - startRotation;
     const duration = 4000; 
