@@ -96,7 +96,7 @@ body {
 /* Spin button styles */
 #spin {
     position: absolute;
-    top: 45%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
@@ -130,14 +130,6 @@ body {
 .footer {
     color: #ffffff;
     margin-top: 20px;
-}
-
-/* Add this to your CSS */
-.winner-display {
-    color: #fff;
-    font-size: 24px;
-    margin-top: 15px;
-    display: none;  /* Initially hide it */
 }
 
 /* Mobile Responsiveness */
