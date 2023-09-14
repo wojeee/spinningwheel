@@ -8,46 +8,56 @@ body {
     margin: 0;
     padding: 0;
     background-color: #34495e;
-    font-family: sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    height: 100vh;
     overflow: hidden;
+}
+
+.page-wrapper {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 
 .title-header {
-    font-size: 2rem;
-    color: #e2e2e2;
-    margin-bottom: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 5px;
 }
 
+/* Components */
+
+/* Wheel container styles */
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80vmin;
-    height: 80vmin;
+    width: 500px;
+    height: 500px;
     background-color: #ccc;
     border-radius: 50%;
+    border: 15px solid #dde;
     position: relative;
     overflow: hidden;
+    transition: 5s;
 }
 
 .container div {
     height: 50%;
-    width: 40vmin;
+    width: 200px;
     position: absolute;
     clip-path: polygon(100% 0, 50% 100%, 0 0);
+    transform: translateX(-50%);
     transform-origin: bottom;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 20px;
     font-weight: bold;
     color: #fff;
+    left: 135px;
 }
 
 .container .one {
@@ -83,9 +93,30 @@ body {
     transform: rotate(315deg);
 }
 
-.arrow {
+/* Spin button styles */
+#spin {
     position: absolute;
-    top: -1rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-color: #e2e2e2;
+    text-transform: uppercase;
+    border: 8px solid #fff;
+    font-weight: bold;
+    font-size: 20px;
+    color: #a2a2a2;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+    letter-spacing: 1px;
+}
+
+.arrow {
+    position: static;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
     color: #fff;
@@ -93,63 +124,45 @@ body {
 
 .arrow::before {
     content: "\1F817";
-    font-size: 3vmin;
-}
-
-#spin {
-    margin-top: 1rem;
-    background-color: #e2e2e2;
-    text-transform: uppercase;
-    border: 0.5vmin solid #fff;
-    font-weight: bold;
-    font-size: 1.5vmin;
-    color: #a2a2a2;
-    width: 10vmin;
-    height: 10vmin;
-    border-radius: 50%;
-    cursor: pointer;
-    outline: none;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 50px;
 }
 
 .footer {
-    margin-top: 1.5rem;
-    font-size: 1rem;
-    color: #e2e2e2;
-    text-align: center;
+    color: #ffffff;
+    margin-top: 20px;
 }
 
-/* Media Query for smaller screens */
-@media only screen and (max-width: 480px) {
+/* Mobile Responsiveness */
+@media only screen and (max-width: 600px) {
     .title-header {
-        font-size: 1.5rem;
+        font-size: 24px;  /* Reduce the header font size */
+        margin-bottom: 15px;  /* Adjust the margin */
     }
 
     .container {
-        width: 70vmin;
-        height: 70vmin;
+        width: 80vw;  /* Adjust wheel size */
+        height: 80vw;
     }
 
     .container div {
-        width: 35vmin;
-        font-size: 1.2rem;
-    }
-
-    .arrow::before {
-        font-size: 2.5vmin;
+        width: 40vw;  /* Adjust the size of the numbered containers */
+        left: 20vw;
+        font-size: 16px;  /* Adjust font size within the sections of the wheel */
     }
 
     #spin {
-        font-size: 1.2vmin;
-        width: 8vmin;
-        height: 8vmin;
+        width: 50px;  /* Scale down the spin button */
+        height: 50px;
+        font-size: 14px;
+        border: 6px solid #fff;  /* Adjust border */
+    }
+
+    .arrow::before {
+        font-size: 30px;  /* Adjust arrow size */
     }
 
     .footer {
-        font-size: 0.9rem;
+        font-size: 14px;  /* Adjust footer font size */
+        margin-top: 15px;  /* Adjust margin */
     }
 }
-
