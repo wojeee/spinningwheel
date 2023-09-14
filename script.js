@@ -1,71 +1,81 @@
-const wheel = document.getElementById("wheel");
-const spinBtn = document.getElementById("spin-btn");
-const finalValue = document.getElementById("final-value");
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6', 'Item 7', 'Item 8', 'Item 9', 'Item 10'];
+const totalItems = items.length;
+const sliceAngle = 2 * Math.PI / totalItems;
+let currentRotation = 0;
 
-const data = Array(6).fill(16);
-const pieColors = ["#8b35bc", "#b163da", "#8b35bc", "#b163da", "#8b35bc", "#b163da"];
-/*const values = [1, 2, 3, 4, 5, 6];*/
-const values = ["Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig"];  // Changed from numbers to words
+function adjustCanvasForDPI() {
+    const dpi = window.devicePixelRatio;
+    const styleWidth = +getComputedStyle(canvas).getPropertyValue("width").slice(0,-2);
+    const styleHeight = +getComputedStyle(canvas).getPropertyValue("height").slice(0,-2);
+    canvas.setAttribute('width', styleWidth * dpi);
+    canvas.setAttribute('height', styleHeight * dpi);
+    ctx.scale(dpi, dpi);
+}
 
-
-let myChart = new Chart(wheel, {
-  plugins: [ChartDataLabels],
-  type: "pie",
-  data: {
-    labels: values,
-    datasets: [{
-      backgroundColor: pieColors,
-      data: data,
-    }],
-  },
-  options: {
-    responsive: true,
-    animation: { duration: 0 },
-    plugins: {
-      tooltip: false,
-      legend: { display: false },
-      datalabels: {
-        color: "#ffffff",
-        formatter: (_, context) => context.chart.data.labels[context.dataIndex],
-        font: { size: 24 },
-      },
-    },
-  },
-});
-
-const getSegmentFromDegree = (degree) => {
-  let segments = data.length;
-  let segmentAngle = 360 / segments;
-  for (let i = 0; i < segments; i++) {
-    if (degree >= i * segmentAngle && degree < (i + 1) * segmentAngle) {
-      return values[i];
-    }
-  }
-  return null;
-};
-
-spinBtn.addEventListener("click", () => {
-  spinBtn.disabled = true;
-  finalValue.innerHTML = `<p>Good Luck!</p>`;
-  
-  let totalRotations = 5 * 360; // 5 complete rotations for dramatic effect
-  let randomDegree = Math.floor(Math.random() * 360);
-  let endRotation = totalRotations + randomDegree;
-
-  let currentRotation = 0;
-  let increment = 10;
-
-  const rotationInterval = setInterval(() => {
-    currentRotation += increment;
+function drawWheel() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.save();
+    ctx.translate(200, 200);
+    ctx.rotate(currentRotation);
     
-    myChart.options.rotation = currentRotation;
-    myChart.update();
+    for(let i = 0; i < totalItems; i++) {
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.arc(0, 0, 200, i * sliceAngle, (i+1) * sliceAngle, false);
+        ctx.fillStyle = i % 2 == 0 ? '#FFDD00' : '#FF6600';
+        ctx.fill();
+        ctx.stroke();
 
-    if (currentRotation >= endRotation) {
-      clearInterval(rotationInterval);
-      let segmentValue = getSegmentFromDegree(randomDegree);
-      finalValue.innerHTML = `<p>Value: ${segmentValue}</p>`;
-      spinBtn.disabled = false;
+        ctx.save();
+        ctx.rotate(i * sliceAngle + sliceAngle / 2);
+        ctx.fillStyle = '#000';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(items[i], 120, 0);
+        ctx.restore();
     }
-  }, 10);
-});
+    
+    ctx.restore();
+}
+
+function easeOutQuad(t) {
+    return t * (2 - t);
+}
+
+function spinWheel() {
+    const spins = Math.floor(Math.random() * 10) + 3; 
+    const targetRotation = currentRotation + (spins * 2 * Math.PI + Math.random() * 2 * Math.PI);
+    const startRotation = currentRotation;
+    const changeInRotation = targetRotation - startRotation;
+    const duration = 4000; 
+    const startTime = Date.now();
+
+    function animate() {
+        const now = Date.now();
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeVal = easeOutQuad(progress);
+
+        currentRotation = startRotation + easeVal * changeInRotation;
+
+        drawWheel();
+
+        if(progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            displayWinner();
+        }
+    }
+
+    animate();
+}
+
+function displayWinner() {
+    const landedItem = Math.floor((totalItems - (currentRotation / sliceAngle) % totalItems) % totalItems);
+    document.getElementById('result').textContent = 'Winner: ' + items[landedItem];
+}
+
+adjustCanvasForDPI();
+drawWheel();
