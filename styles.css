@@ -132,25 +132,37 @@ body {
     margin-top: 20px;
 }
 
-/* Responsiveness */
+/* Mobile Responsiveness */
 @media only screen and (max-width: 600px) {
+    .title-header {
+        font-size: 24px;  /* Reduce the header font size */
+        margin-bottom: 15px;  /* Adjust the margin */
+    }
+
     .container {
-        width: 80vw;
+        width: 80vw;  /* Adjust wheel size */
         height: 80vw;
     }
 
     .container div {
-        width: 40vw;
+        width: 40vw;  /* Adjust the size of the numbered containers */
         left: 20vw;
+        font-size: 16px;  /* Adjust font size within the sections of the wheel */
     }
 
     #spin {
-        width: 60px;
-        height: 60px;
-        font-size: 16px;
+        width: 50px;  /* Scale down the spin button */
+        height: 50px;
+        font-size: 14px;
+        border: 6px solid #fff;  /* Adjust border */
     }
 
     .arrow::before {
-        font-size: 40px;
+        font-size: 30px;  /* Adjust arrow size */
+    }
+
+    .footer {
+        font-size: 14px;  /* Adjust footer font size */
+        margin-top: 15px;  /* Adjust margin */
     }
 }
