@@ -10,9 +10,11 @@
   }
   .wrapper {
     width: 90%;
+    width: 400px;
+    height: 400px;
     max-width: 34.37em;
     max-height: 90vh;
-    background-color: #ffffff;
+    background-color: #000;
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -23,8 +25,8 @@
   }
   .container {
     position: relative;
-    width: 60%;
-    height: 60%;
+    width: 400px;
+    height: 400px;
     max-width: 300px;  /* Or you can set a specific max width */
     margin: 0 auto;   /* To center the container horizontally */
   }
