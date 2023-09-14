@@ -14,6 +14,14 @@ function adjustCanvasForDPI() {
     ctx.scale(dpi, dpi);
 }
 
+window.addEventListener('resize', () => {
+    adjustCanvasForDPI();
+    drawWheel();
+});
+
+/* ... rest of the script ... */
+
+
 function drawWheel() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.save();
