@@ -1,73 +1,48 @@
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-const items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6', 'Item 7', 'Item 8', 'Item 9', 'Item 10'];
-const totalItems = items.length;
-const sliceAngle = 2 * Math.PI / totalItems;
-let currentRotation = 0;
+/*let container = document.querySelector(".container");
+let btn = document.getElementById("spin");
+let number = Math.ceil(Math.random() * 1000);
 
-// Adjust canvas for high DPI displays
-function adjustCanvasForDPI() {
-    const dpi = window.devicePixelRatio;
-    const styleWidth = +getComputedStyle(canvas).getPropertyValue("width").slice(0,-2);
-    const styleHeight = +getComputedStyle(canvas).getPropertyValue("height").slice(0,-2);
-    canvas.setAttribute('width', styleWidth * dpi);
-    canvas.setAttribute('height', styleHeight * dpi);
-    ctx.scale(dpi, dpi);
+/*btn.onclick = function () {
+	container.style.transform = "rotate(" + number + "deg)";
+	number += Math.ceil(Math.random() * 1000);
+}*/
+/*btn.onclick = function () {
+    console.log("Button clicked!");  // This should print in the console when the button is clicked
+    container.style.transform = "rotate(" + number + "deg)";
+    number += Math.ceil(Math.random() * 1000);
+}*/
+
+let container = document.querySelector(".container");
+let btn = document.getElementById("spin");
+let number = Math.ceil(Math.random() * 1000);
+let winningNumberDisplay = document.querySelector("#winningNumberDisplay span");
+
+btn.onclick = function() {
+    console.log("Button clicked!");
+    container.style.transform = "rotate(" + number + "deg)";
+
+    // Hide the winning number display initially
+    document.querySelector("#winningNumberDisplay").style.display = 'none';
+
+    setTimeout(function() {
+        let effectiveDeg = number % 360;
+        let winSegment;
+
+        if (effectiveDeg >= 0 && effectiveDeg < 45) winSegment = 1;
+        else if (effectiveDeg >= 45 && effectiveDeg < 90) winSegment = 2;
+        else if (effectiveDeg >= 90 && effectiveDeg < 135) winSegment = 3;
+        else if (effectiveDeg >= 135 && effectiveDeg < 180) winSegment = 4;
+        else if (effectiveDeg >= 180 && effectiveDeg < 225) winSegment = 5;
+        else if (effectiveDeg >= 225 && effectiveDeg < 270) winSegment = 6;
+        else if (effectiveDeg >= 270 && effectiveDeg < 315) winSegment = 7;
+        else if (effectiveDeg >= 315 && effectiveDeg < 360) winSegment = 8;
+
+        winningNumberDisplay.textContent = winSegment;
+
+        // Display the winning number
+        document.querySelector("#winningNumberDisplay").style.display = 'block';
+
+    }, 5100);  // A bit more than your CSS transition duration
+
+    number += Math.ceil(Math.random() * 1000);
 }
-
-function drawWheel() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for(let i = 0; i < totalItems; i++) {
-        ctx.beginPath();
-        ctx.moveTo(200, 200);
-        ctx.arc(200, 200, 200, i * sliceAngle, (i+1) * sliceAngle, false);
-        ctx.lineTo(200, 200);
-        ctx.fillStyle = i % 2 == 0 ? '#FFDD00' : '#FF6600';
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.save();
-        ctx.translate(200, 200);
-        ctx.rotate(i * sliceAngle + sliceAngle / 2);
-        ctx.fillStyle = '#000';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(items[i], 120, 0);
-        ctx.restore();
-    }
-}
-
-function spinWheel() {
-    const spins = Math.floor(Math.random() * 10) + 3; 
-    const targetRotation = spins * 2 * Math.PI + Math.random() * 2 * Math.PI; 
-    animateSpin(currentRotation, targetRotation);
-}
-
-function animateSpin(startRotation, targetRotation) {
-    const duration = 2000; 
-    const startTime = Date.now();
-
-    function animate() {
-        const now = Date.now();
-        const progress = (now - startTime) / duration;
-        if(progress < 1) {
-            currentRotation = startRotation + (targetRotation - startRotation) * (progress - progress ** 3 / 2);
-            drawWheel();
-            requestAnimationFrame(animate);
-        } else {
-            currentRotation = targetRotation;
-            drawWheel();
-            displayWinner();
-        }
-    }
-
-    animate();
-}
-
-function displayWinner() {
-    const landedItem = Math.floor((totalItems - (currentRotation / sliceAngle) % totalItems) % totalItems);
-    document.getElementById('result').textContent = 'Winner: ' + items[landedItem];
-}
-
-adjustCanvasForDPI();
-drawWheel();
