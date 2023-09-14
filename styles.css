@@ -147,7 +147,40 @@ body {
     .container div {
         width: 40vw;  /* Adjust the size of the numbered containers */
         left: 20vw;
-        font-size: 16px;  /* Adjust font size within the sections of the wheel */
+        font-size: 1.2rem;  /* Adjust font size within the sections of the wheel */
+    }
+
+    /* Adjusting positions for .one through .eight for mobile */
+    .container .one {
+        transform: rotate(0deg) translateY(-50%);
+    }
+
+    .container .two {
+        transform: rotate(45deg) translateY(-50%);
+    }
+
+    .container .three {
+        transform: rotate(90deg) translateY(-50%);
+    }
+
+    .container .four {
+        transform: rotate(135deg) translateY(-50%);
+    }
+
+    .container .five {
+        transform: rotate(180deg) translateY(-50%);
+    }
+
+    .container .six {
+        transform: rotate(225deg) translateY(-50%);
+    }
+
+    .container .seven {
+        transform: rotate(270deg) translateY(-50%);
+    }
+
+    .container .eight {
+        transform: rotate(315deg) translateY(-50%);
     }
 
     #spin {
@@ -166,3 +199,4 @@ body {
         margin-top: 15px;  /* Adjust margin */
     }
 }
+
