@@ -108,3 +108,10 @@ body{
 	outline:none;
 	letter-spacing: 1px;
 }
+
+.lucky-wheel-header {
+    text-align: center;
+    color: #ffffff; /* White color, but you can change it to any color you like */
+    margin-bottom: 20px; /* Some space between the header and the button */
+    font-family: sans-serif;
+}
