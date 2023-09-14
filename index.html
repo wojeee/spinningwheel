@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Try your luck with the Lucky Wheel!">
-    <title>Spin Wheel</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
-    <main class="page-wrapper">
-        <h1 class="title-header">Lucky Wheel</h1>
-        <button id="spin">Spin</button>
-        <span class="arrow"></span>
-        <div class="container">
-            <div class="one">1</div>
-	        <div class="two">2</div>
-            <div class="three">3</div>
-            <div class="four">4</div>
-            <div class="five">5</div>
-            <div class="six">6</div>
-            <div class="seven">7</div>
-            <div class="eight">8</div>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2023 Spin Wheel. All rights reserved.</p>
-    </footer>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spin Wheel App</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <canvas id="wheel"></canvas>
+        <button id="spin-btn">Spin</button>
+        <img src="spinner-arrow-.svg" alt="spinner-arrow" />
+      </div>
+      <div id="final-value">
+        <p>Click On The Spin Button To Start</p>
+      </div>
+    </div>
+    <!-- Chart JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <!-- Chart JS Plugin for displaying text over chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script>
+    <!-- Script -->
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>
