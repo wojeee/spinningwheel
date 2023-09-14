@@ -29,8 +29,8 @@
     margin: 0 auto;   /* To center the container horizontally */
   }
   #wheel {
-    max-height: 60vh;
-    width: 60vh;
+    max-height: inherit;
+    width: inherit;
     top: 0;
     padding: 0;
   }
