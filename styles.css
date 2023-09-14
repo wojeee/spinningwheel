@@ -163,6 +163,7 @@ body {
     .container {
         width: 80vw;  /* Adjust wheel size */
         height: 80vw;
+        overflow: hidden;
     }
 
     .container div {
