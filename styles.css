@@ -9,7 +9,7 @@
     background: linear-gradient(135deg, #c3a3f1, #6414e9);
   }
   .wrapper {
-    width: 90%;
+    max-width:90%;
     width: 400px;
     height: 400px;
     max-width: 34.37em;
