@@ -23,10 +23,11 @@ window.addEventListener('resize', () => {
 
 
 function drawWheel() {
+    ctx.rotate(currentRotation);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.save();
     ctx.translate(200, 200);
-    ctx.rotate(currentRotation);
+    
     
     for(let i = 0; i < totalItems; i++) {
         ctx.beginPath();
