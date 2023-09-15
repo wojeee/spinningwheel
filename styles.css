@@ -15,7 +15,7 @@ button {
     margin-top: 20px;
 }
 
-/* ... other styles ... */
+/* ... other styles ... 
 
 @media screen and (max-width: 480px) {
     canvas {
@@ -28,4 +28,4 @@ button {
         border-right: 10px solid transparent;
         border-bottom: 20px solid #000;
     }
-}
+}*/
