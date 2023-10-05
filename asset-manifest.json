@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/woje-portfolio/static/css/main.e6c13ad2.css",
+    "main.js": "/woje-portfolio/static/js/main.8e5b9b09.js",
+    "static/js/787.b120f7f4.chunk.js": "/woje-portfolio/static/js/787.b120f7f4.chunk.js",
+    "index.html": "/woje-portfolio/index.html",
+    "main.e6c13ad2.css.map": "/woje-portfolio/static/css/main.e6c13ad2.css.map",
+    "main.8e5b9b09.js.map": "/woje-portfolio/static/js/main.8e5b9b09.js.map",
+    "787.b120f7f4.chunk.js.map": "/woje-portfolio/static/js/787.b120f7f4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.8e5b9b09.js"
+  ]
+}
